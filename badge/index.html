@@ -1,0 +1,41 @@
+<head>
+  <script src="https://fb.me/react-0.14.6.min.js"></script>
+  <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.12.2.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+  
+</body>
+
+<script type="text/jsx">
+  // define a react component class
+  if (typeof window !== 'undefined') {
+    window.React = React;
+  }
+
+  var Badge = React.createClass({
+    render: function() {
+      this.props //{}
+
+      return <button className="btn btn-primary" type="button">
+        {this.props.title} <span className="badge">{this.props.number}</span>
+      </button>
+    }
+  });
+
+  var options = { 
+    title: 'Sent',
+    number: 3
+  }
+  // Ask react to render this class
+  var element = React.createElement(Badge, options);
+
+  // When we ask react to render this class, 
+  // we will tell it where to place the rendered element in the dom
+
+  ReactDOM.render(element, document.body)
+</script>
