@@ -1,0 +1,90 @@
+<head>
+  <script src="https://fb.me/react-0.14.6.min.js"></script>
+  <script src="https://fb.me/react-dom-0.14.6.min.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.12.2.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+
+  <div class="container">
+      <div class="col-sm-12 target">
+
+      </div>
+  </div>
+
+</body>
+
+<script type="text/jsx">
+  // define a react component class
+  if (typeof window !== 'undefined') {
+    window.React = React;
+  }
+
+  var Badge = React.createClass({
+    render: function() {
+      this.props //{}
+
+      return <button className="btn btn-primary" type="button">
+        {this.props.title} <span className="badge">{this.props.number}</span>
+      </button>
+    }
+  });
+
+  var Thumbnail = React.createClass({
+    render: function() {
+      return <div className="col-sm-6 col-md-4">
+                <div className="thumbnail">
+                  <img src={this.props.imageUrl} />
+                  <div className="caption">
+                    <h3>{this.props.header}</h3>
+                    <p>{this.props.description}</p>
+                    <p>
+                      <Badge title={this.props.title} number={this.props.number} />
+                    </p>
+                    </div>
+                  </div>
+                </div>
+    }
+  });
+
+  var ThumbnailList = React.createClass({
+    render: function() {
+      var list = this.props.thumbnailData.map(function(thumbnailProps) {
+        return <Thumbnail {...propertis=thumbnailProps} />
+      });
+
+      return <div>
+        {list}
+      </div>
+    }
+  })
+
+  var options = {
+    thumbnailData: [
+      {
+        title: 'See Tutorials',
+        number: 34,
+        header: 'React',
+        description: 'Lots of people use React as the V in MVC. Since React makes no assumptions about the rest of your technology stack, it\'s easy to try it out on a small feature in an existing project.',
+        imageUrl: 'https://facebook.github.io/react/img/logo_og.png'
+      },
+      {
+        title: 'Show Courses',
+        number: 3,
+        header: 'Learn Gulp',
+        description: 'Gulp will help speed up your development workflow.',
+        imageUrl: 'http://www.webdesignermag.co.uk/wp-content/uploads/2014/09/Speed-up-your-workflow-with-a-Gulp-plugin.png'
+      }
+    ]
+  }
+  // Ask react to render this class
+  var element = React.createElement(ThumbnailList, options);
+
+  // When we ask react to render this class,
+  // we will tell it where to place the rendered element in the dom
+
+  ReactDOM.render(element, document.querySelector('.target'))
+</script>
