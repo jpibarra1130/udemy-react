@@ -6,7 +6,7 @@ module.exports = window.api = {
   get: function(url) {
     return fetch(rootUrl + url, {
       headers: {
-        'Authorization': 'Cliend-ID ' + apiKey
+        'Authorization': 'Client-ID ' + apiKey
       }
     }).then(function(response){
       return response.json()
